@@ -33,6 +33,7 @@
           :img-src="active.item.CatImage"
           img-alt="Image"
           img-top
+          @click="clicked"
           tag="article"
           style="max-width: 20rem;"
           class="mb-2 w-100 rounded justify-content-center ">
@@ -52,9 +53,9 @@
       <b-form-group id="exampleInputGroup1"
                     label="Cat Name "
                     label-for="Catname"
-                    description="We'll never share your email with anyone else.">
+                    description="Enter a kitty name">
         <b-form-input id="Catname"
-                      type="email"
+                      type="text"
                       v-model="form.name"
                       required
                       :placeholder="holder.CatName">
@@ -64,7 +65,7 @@
                     label="Clicks "
                     label-for="exampleInput2">
         <b-form-input id="exampleInput2"
-                      type="text"
+                      type="number"
                       v-model="form.clicks"
                       required
                       :placeholder="String(holder.CatClicks)">
@@ -84,16 +85,19 @@
 <hr class="my-4">
 <v-container>
 <div class="galary">
-<h2>Galary</h2>
+<h2>Cat Image Galary</h2>
   <b-row>
-<b-col lg="3" v-for="galary in CatData">
+<b-col lg="3" v-for="[index,galary] in list">
   <b-card :img-src="galary.CatImage"
                 img-alt="Card image"
                 img-top
+                @click="activate(index,galary)"
                 :class="{'fixed-height':true,'border-primary':isActive(galary) ,rounded:true }"
                 >
-            <p class="card-text p-3 mb-2 bg-dark text-white">
-               {{galary.CatName}}
+            <p  :class="{'card-text':true,'p-3':true, 'mb-2':true, 
+             'bg-dark':isActive(galary),'text-white':isActive(galary)}">
+               {{galary.CatName}}<br>
+               No.of times Clicked : {{galary.CatClicks}}
             </p>
         </b-card>
 </b-col>
@@ -115,13 +119,13 @@ export default {
   watch:{
     active:function(newValue){
       console.log(newValue);
-      this.form.name=newValue.item.CatName;
-      this.form.clicks=newValue.item.CatClicks;
-      console.log(this.form);
     }
   },
   methods:{
-        
+        clicked(){
+         let cur=this.active.item.CatClicks++;
+         this.list[this.active.index].CatClicks=cur;
+        },
     activate(index,val){
       this.active.index=index;
       this.active.item=val;
@@ -137,7 +141,12 @@ export default {
     },
     onSubmit (evt) {
       evt.preventDefault();
-   console.log(evt);
+   
+   let name=this.active.item.CatName=this.form.name;
+   this.list[this.active.index].CatName=name;
+
+   let clicks = this.active.item.CatClicks= this.form.clicks;
+   this.list[this.active.index].CatClicks=clicks;
    
     },
     onReset (evt) {
