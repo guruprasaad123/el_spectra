@@ -1,0 +1,88 @@
+[
+{
+    "CatName":"Tom",
+    "CatClicks":0, 
+    "CatAge":14,
+    "CatImage":"https://d1941uuft27pfg.cloudfront.net/uploads/2012/11/101438745-cat-conjunctivitis-causes.jpg" ,
+    "CatNickNames":"Tommy"
+},
+{
+    "CatName":"Domino",
+    "CatClicks":0, 
+    "CatAge":67,
+    "CatImage":"https://d1941uuft27pfg.cloudfront.net/uploads/2012/11/93548945-20-questions-before-you-foster-cats-632x475.jpg" ,
+    "CatNickNames":"Domin"
+},
+{
+    "CatName":"Torreto",
+    "CatClicks":0, 
+    "CatAge":67,
+    "CatImage":"https://d1941uuft27pfg.cloudfront.net/uploads/2012/11/101438745-cat-conjunctivitis-causes.jpg" ,
+    "CatNickNames":"tor"
+},
+{
+    "CatName":"Magneto",
+    "CatClicks":0, 
+    "CatAge":41,
+    "CatImage":"https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg" ,
+    "CatNickNames":"Magnet"
+},
+{
+    "CatName":"Philip",
+    "CatClicks":0, 
+    "CatAge":31,
+    "CatImage":"http://zoolandiafamily.it/wp-content/uploads/2016/06/gatto-miagola.jpg" ,
+    "CatNickNames":"Phil"
+},
+{
+    "CatName":"Romero",
+    "CatClicks":0, 
+    "CatAge":31,
+    "CatImage":"https://www.pets4homes.co.uk/images/cats_hero.png" ,
+    "CatNickNames":"Rome"
+},
+{
+    "CatName":"Angel",
+    "CatClicks":0, 
+    "CatAge":31,
+    "CatImage":"https://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/grief-and-loss.jpg" ,
+    "CatNickNames":"Ann"
+},
+{
+    "CatName":"Annae",
+    "CatClicks":0, 
+    "CatAge":31,
+    "CatImage":"https://www.cats.org.uk/uploads/images/featurebox_sidebar_kids/help-advice-link-box22.jpg" ,
+    "CatNickNames":"Ane"
+}
+,
+{
+    "CatName":"Nony",
+    "CatClicks":0, 
+    "CatAge":31,
+    "CatImage":"http://www.petsworld.in/blog/wp-content/uploads/2014/09/funny-cat.jpg" ,
+    "CatNickNames":"non"
+}
+,
+{
+    "CatName":"Lily",
+    "CatClicks":0, 
+    "CatAge":31,
+    "CatImage":"http://www.petsworld.in/blog/wp-content/uploads/2014/09/adorable-cat.jpg" ,
+    "CatNickNames":"lil"
+},
+{
+    "CatName":"whitty",
+    "CatClicks":0, 
+    "CatAge":31,
+    "CatImage":"http://www.petsworld.in/blog/wp-content/uploads/2014/09/lovely-white-cat-image.jpg",
+    "CatNickNames":"white"
+}
+]
+
+
+
+
+
+
+
