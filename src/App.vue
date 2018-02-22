@@ -28,7 +28,7 @@
 
 <b-col lg="4">
 
-<div class="align-middle justify-content-center  " >
+<div class="align-middle justify-content-center " >
   <b-card :header="active.item.CatName" 
           :img-src="active.item.CatImage"
           img-alt="Image"
@@ -36,9 +36,10 @@
           @click="clicked"
           tag="article"
           style="max-width: 20rem;"
-          class="mb-2 w-100 rounded justify-content-center ">
-    <p class="card-text">
-    aka {{active.item.CatNickNames}}
+          class="mb-2 w-100 rounded justify-content-center  bg-dark text-white">
+    <p class="card-text ">
+    aka {{active.item.CatNickNames}}<br>
+    {{age(active.item)}}
     </p>
  
   </b-card>
@@ -117,7 +118,7 @@
   
   <b-modal v-model="modal_cat" hide-footer title="New Entry" >
  <div class="form">
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+    <b-form  @reset="modal_reset" v-if="show">
 
       <b-form-group id="exampleInputGroup1"
                     label="Kitten Name"
@@ -146,17 +147,18 @@
                     label="Image url "
                     label-for="exampleInput3">
         <b-form-input id="exampleInput3"
-                      type="text"
-                      v-model="form.name"
+                      type="url"
+                      v-model="modal_form.url"
                       required
                       placeholder="http://">
         </b-form-input>
       </b-form-group>
 
+    <b-button @click="modal_submit"  variant="primary">Create</b-button>
+   <b-button  type="reset" variant="danger">Reset</b-button>
+
     </b-form>
 
-    <b-button  type="submit" variant="primary">Create</b-button>
-   <b-button  type="reset" variant="danger">Reset</b-button>
 
   </div>
   </b-modal>
@@ -173,10 +175,43 @@ export default {
   name: 'app',
   watch:{
     active:function(newValue){
-      console.log(newValue);
+     this.age(newValue.item);
+    },
+    catAge:function(newValue){
+
+      this.active.item.catAge=newValue;
+      this.list[this.active.index].CatAge=newValue;
+      
     }
   },
   methods:{
+    age(val){
+      
+      return ((val.CatClicks>=0 && val.CatClicks<=5)?"Infant":
+             (val.CatClicks>=6 && val.CatClicks<=12)?"Child":
+             (val.CatClicks>=13 && val.CatClicks<=25)?"Young":
+             (val.CatClicks>=26 && val.CatClicks<=40)?"Middle-Age":
+             (val.CatClicks>=41 && val.CatClicks<=60)?"Old":"Very-Old");
+    },
+    modal_submit(){
+      let data={
+    CatName:this.modal_form.name,
+    CatClicks:0, 
+    CatAge:0,
+    CatImage:this.modal_form.url ,
+    CatNickNames:this.modal_form.nickname
+};
+      this.list.unshift(data);
+      this.CatData.unshift(data);
+    }
+    ,modal_reset(){
+      this.modal_form.name="";
+      this.modal_form.clicks=0;
+      this.modal_form.url="";
+      this.modal_form.nickname="";
+      this.modal_form.age=0;
+    
+    },
         clicked(){
          let cur=this.active.item.CatClicks++;
          this.list[this.active.index].CatClicks=cur;
@@ -218,11 +253,11 @@ export default {
   data () {
     return {
       CatData,
-      list:Object.entries(CatData),
       active:{
         index:0,
         item:CatData[0]
         },
+        catAge:0,
       name: '',
       show:true,
       modal_cat:false,
@@ -242,24 +277,17 @@ export default {
     
   },
    computed: {
+     list(){
+     return Object.entries(this.CatData);
+     },
      holder(){
        return this.active.item;
      },
-    state () {
-      return this.name.length >= 4 ? true : false
-    },
-    invalidFeedback () {
-      if (this.name.length > 4) {
-        return ''
-      } else if (this.name.length > 0) {
-        return 'Enter at least 4 characters'
-      } else {
-        return 'Please enter something'
-      }
-    },
-    validFeedback () {
-      return this.state === true ? 'Thank you' : ''
-    }
+     updatedAge(){
+       this.catAge=this.age(this.active.item);
+       return this.age(this.active.item);
+     }
+   
   },
 }
 </script>
