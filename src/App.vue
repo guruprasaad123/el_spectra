@@ -48,6 +48,11 @@
 
 <b-col lg="4">
 
+  <div class="d-block p-2 bg-dark text-white">
+      <p class="lead">Want a new Cat?</p>
+<b-button variant="success" @click="modal_cat=true">New Cat</b-button>
+  </div>
+
 <div class="form  ">
      <b-form @submit="onSubmit" @reset="onReset" v-show="show">
       <b-form-group id="exampleInputGroup1"
@@ -72,8 +77,9 @@
         </b-form-input>
       </b-form-group>
     
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+        <b-button type="submit" variant="primary">Submit</b-button>
+        <b-button type="reset" variant="danger">Reset</b-button>
+      
     </b-form>
 </div>
 
@@ -87,7 +93,7 @@
 <div class="galary">
 <h2>Cat Image Galary</h2>
   <b-row>
-<b-col lg="3" v-for="[index,galary] in list">
+<b-col   lg="3" v-for="[index,galary] in list">
   <b-card :img-src="galary.CatImage"
                 img-alt="Card image"
                 img-top
@@ -107,6 +113,55 @@
 </v-container>
 
     </v-container>
+  
+  
+  <b-modal v-model="modal_cat" hide-footer title="New Entry" >
+ <div class="form">
+    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+
+      <b-form-group id="exampleInputGroup1"
+                    label="Kitten Name"
+                    label-for="exampleInput1"
+                    description="Enter the Kitty Name">
+        <b-form-input id="exampleInput1"
+                      type="text"
+                      v-model="modal_form.name"
+                      required
+                      placeholder="Enter CatName">
+        </b-form-input>
+      </b-form-group>
+
+      <b-form-group id="exampleInputGroup2"
+                    label="Nick Name :"
+                    label-for="exampleInput2">
+        <b-form-input id="exampleInput2"
+                      type="text"
+                      v-model="modal_form.nickname"
+                      required
+                      placeholder="Nicky">
+        </b-form-input>
+      </b-form-group>
+
+      <b-form-group id="exampleInputGroup3"
+                    label="Image url "
+                    label-for="exampleInput3">
+        <b-form-input id="exampleInput3"
+                      type="text"
+                      v-model="form.name"
+                      required
+                      placeholder="http://">
+        </b-form-input>
+      </b-form-group>
+
+    </b-form>
+
+    <b-button  type="submit" variant="primary">Create</b-button>
+   <b-button  type="reset" variant="danger">Reset</b-button>
+
+  </div>
+  </b-modal>
+  
+  
   </div>
 </template>
 
@@ -163,18 +218,26 @@ export default {
   data () {
     return {
       CatData,
+      list:Object.entries(CatData),
       active:{
         index:0,
         item:CatData[0]
         },
       name: '',
       show:true,
+      modal_cat:false,
       form:{
         name:"",
         clicks:"",
-
       },
-      list:Object.entries(CatData)
+      modal_form:{
+        name:"",
+        clicks:0,
+        url:"",
+        nickname:"",
+        age:0,
+      },
+      
     }
     
   },
