@@ -104,7 +104,8 @@
             <p  :class="{'card-text':true,'p-3':true, 'mb-2':true, 
              'bg-dark':isActive(galary),'text-white':isActive(galary)}">
                {{galary.CatName}}<br>
-               No.of times Clicked : {{galary.CatClicks}}
+               No.of times Clicked : {{galary.CatClicks}}<br>
+               {{age(galary)}}
             </p>
         </b-card>
 </b-col>
@@ -181,7 +182,7 @@ export default {
 
       this.active.item.catAge=newValue;
       this.list[this.active.index].CatAge=newValue;
-      
+
     }
   },
   methods:{
